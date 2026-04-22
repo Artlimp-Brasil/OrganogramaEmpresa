@@ -7,6 +7,14 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+ARG VITE_ORGANOGRAMA_API_URL
+ARG VITE_N8N_HEADER
+
+ENV VITE_ORGANOGRAMA_API_URL=$VITE_ORGANOGRAMA_API_URL
+ENV VITE_N8N_HEADER=$VITE_N8N_HEADER
+
+
 RUN npm run build
 
 # Etapa 2: servir com nginx

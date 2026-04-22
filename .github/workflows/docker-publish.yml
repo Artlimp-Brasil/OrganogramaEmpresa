@@ -38,5 +38,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            VITE_ORGANOGRAMA_API_URL=${{ secrets.VITE_ORGANOGRAMA_API_URL }}
+            VITE_N8N_HEADER=${{ secrets.VITE_N8N_HEADER }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
