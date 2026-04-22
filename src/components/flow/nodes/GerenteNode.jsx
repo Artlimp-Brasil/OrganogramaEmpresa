@@ -9,8 +9,6 @@ export default function GerenteNode({ data }) {
   const perfilDisc = data.perfilDisc || "";
   const status = data.status || "Ativo";
   const grupoMBTI = data.grupoMBTI || "";
-  console.log(data)
-
 
   const discColors = getDiscColor(perfilDisc);
   const mbtiColors = getMbtiColor(grupoMBTI);
