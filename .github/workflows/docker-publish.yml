@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
 
@@ -13,6 +14,11 @@ jobs:
       packages: write
 
     steps:
+      - name: Verificar secrets
+        run: |
+          [ -n "${{ secrets.VITE_ORGANOGRAMA_API_URL }}" ] && echo "API URL OK" || (echo "API URL vazia" && exit 1)
+          [ -n "${{ secrets.VITE_N8N_HEADER }}" ] && echo "HEADER OK" || (echo "HEADER vazio" && exit 1)
+
       - name: Checkout
         uses: actions/checkout@v4
 
