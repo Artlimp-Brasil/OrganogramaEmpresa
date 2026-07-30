@@ -6,9 +6,11 @@ import OrganogramaFilters from "../components/filters/OrganogramaFilters";
 import { useOrganograma } from "../hooks/useOrganograma";
 import { buildGraph } from "../utils/graph/buildGraph";
 import { filterGraph } from "../utils/graph/filterGraph";
-import { applyDagreLayout } from "../utils/graph/applyDagreLayout";
+//import { applyDagreLayout } from "../utils/graph/applyDagreLayout";
 import { applyEmployeesAndVagasBelowDepartments } from "../utils/graph/applyEmployeesAndVagasBelowDepartments";
 import { VIEW_MODES } from "../constants/organograma";
+import { applyResponsiveTreeLayout  } from "../utils/graph/applyResponsiveTreeLayout";
+
 
 export default function OrganogramaPage() {
   const { rawElements, loading, error } = useOrganograma();
@@ -16,14 +18,14 @@ export default function OrganogramaPage() {
   const [viewMode, setViewMode] = useState(VIEW_MODES.ALL);
 
   const departmentOptions = useMemo(() => {
-  return rawElements
-    .filter((item) => item?.data?.tipo === "departamento")
-    .map((item) => ({
-      value: item.data.id,
-      label: (item.data.label || "").split("\n")[1] || item.data.id,
-    }))
-    .filter((item) => item.value !== "dpto_diretoria");
-}, [rawElements]);
+    return rawElements
+      .filter((item) => item?.data?.tipo === "departamento")
+      .map((item) => ({
+        value: item.data.id,
+        label: (item.data.label || "").split("\n")[1] || item.data.id,
+      }))
+      .filter((item) => item.value !== "dpto_diretoria");
+  }, [rawElements]);
 
   const { nodes, edges } = useMemo(() => {
     const {
@@ -42,7 +44,12 @@ export default function OrganogramaPage() {
       vagasByDepartment
     );
 
-    const topAlignedNodes = applyDagreLayout(filteredNodes, filteredEdges);
+    const topAlignedNodes = applyResponsiveTreeLayout(
+      filteredNodes,
+      filteredEdges,
+      employeesByDepartment,
+      vagasByDepartment
+    );
 
     const finalNodes = applyEmployeesAndVagasBelowDepartments(
       topAlignedNodes,

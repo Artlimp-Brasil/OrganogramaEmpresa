@@ -16,6 +16,7 @@ export default function DepartamentoNode({ data }) {
         width: DEPARTAMENTO_WIDTH,
         minWidth: DEPARTAMENTO_WIDTH,
         maxWidth: DEPARTAMENTO_WIDTH,
+        //boxSizing: "border-box",
         padding: "14px 18px",
         borderRadius: 16,
         border: `1px solid ${border}`,

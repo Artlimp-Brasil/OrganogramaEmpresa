@@ -14,6 +14,9 @@ export default function FuncionarioNode({ data }) {
 
   const discColors = getDiscColor(perfilDisc);
   const mbtiColors = getMbtiColor(grupoMBTI);
+  const colorBackground = status !== 'Ativo' ? "#ffb7b7" : "#ffffff" //a56d48
+  const colorBorder = status !== 'Ativo' ? "2px solid #ef4444" : "2px solid #dbe3ea" //a56d48
+
 
   return (
     <div
@@ -21,11 +24,12 @@ export default function FuncionarioNode({ data }) {
         width: CARD_WIDTH,
         minWidth: CARD_WIDTH,
         maxWidth: CARD_WIDTH,
+        //boxSizing: "border-box",
         padding: 14,
         borderRadius: 16,
-        border: "1px solid #dbe3ea",
-        background: "#ffffff",
-        boxShadow: "0 4px 14px rgba(15, 23, 42, 0.06)",
+        border: colorBorder,
+        background: colorBackground,
+        boxShadow: "0 4px 14px rgba(30, 75, 180, 0.06)",
         fontFamily: "Arial, sans-serif",
         color: "#0f172a",
       }}

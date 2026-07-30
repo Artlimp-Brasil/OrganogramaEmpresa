@@ -19,6 +19,7 @@ export default function GerenteNode({ data }) {
         width: GERENTE_WIDTH,
         minWidth: GERENTE_WIDTH,
         maxWidth: GERENTE_WIDTH,
+        //boxSizing: "border-box",
         padding: "14px 16px",
         borderRadius: 18,
         border: "1px solid #cbd5e1",

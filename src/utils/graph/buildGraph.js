@@ -7,6 +7,11 @@ import {
 } from "../style/nodeDimensions";
 
 export function buildGraph(rawElements = []) {
+  const statusOrder = {
+    Ativo: 0,
+    Afastados: 1,
+  };
+
   const allNodes = rawElements.filter(
     (item) => item?.data && !item.data.source && !item.data.target
   );
@@ -116,8 +121,18 @@ export function buildGraph(rawElements = []) {
 
   employeesByDepartment.forEach((employeeList) => {
     employeeList.sort((a, b) => {
-      const nameA = parseLabel(nodesMap.get(a)?.data?.label || "").linha2 || "";
-      const nameB = parseLabel(nodesMap.get(b)?.data?.label || "").linha2 || "";
+      const dataA = nodesMap.get(a)?.data;
+      const dataB = nodesMap.get(b)?.data;
+
+      const statusA = statusOrder[dataA?.status] ?? 999;
+      const statusB = statusOrder[dataB?.status] ?? 999;
+
+      if (statusA !== statusB) {
+        return statusA - statusB;
+      }
+
+      const nameA = parseLabel(dataA?.label || "").linha2 || "";
+      const nameB = parseLabel(dataB?.label || "").linha2 || "";
 
       return nameA.localeCompare(nameB, "pt-BR", {
         sensitivity: "base",
