@@ -5,12 +5,12 @@ import {
   nodeHeightByType,
 } from "../style/nodeDimensions";
 
-const HORIZONTAL_GAP = 64;
-const VERTICAL_GAP = 90;
-const ROOT_GAP = 100;
-const MARGIN_X = 40;
-const MARGIN_Y = 40;
-const VAGA_SECTION_GAP = 12;
+const HORIZONTAL_GAP    = 64;
+const VERTICAL_GAP      = 90;
+const ROOT_GAP          = 100;
+const MARGIN_X          = 40;
+const MARGIN_Y          = 40;
+const VAGA_SECTION_GAP  = 12;
 
 function calculateDepartmentBlockHeight(
   departmentId,

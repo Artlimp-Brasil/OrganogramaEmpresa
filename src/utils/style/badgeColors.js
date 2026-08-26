@@ -76,3 +76,22 @@ export function getMbtiColor(grupo = "") {
     text: "#334155",
   };
 }
+
+export const getBorderColor = ( numFuncIdeal,numFuncAtual ) => {
+  
+  if ( !numFuncAtual && !numFuncAtual ) return "#dbe3ea"
+  if ( numFuncIdeal > 0 && numFuncAtual > numFuncIdeal ) return "#6917a0"
+  if ( numFuncIdeal > 0 && numFuncAtual < numFuncIdeal ) return "#991b1b"
+  return "#084298" 
+  
+}
+
+
+export const getBgColor = ( numFuncIdeal,numFuncAtual ) => {
+    
+  if ( !numFuncAtual && !numFuncAtual ) return "#747474"
+  if ( numFuncIdeal > 0 && numFuncAtual > numFuncIdeal ) return "#9326dc"
+  if ( numFuncIdeal > 0 && numFuncAtual < numFuncIdeal ) return "#dc2626"
+  return "#0d6efd" 
+
+}

@@ -6,7 +6,6 @@ import OrganogramaFilters from "../components/filters/OrganogramaFilters";
 import { useOrganograma } from "../hooks/useOrganograma";
 import { buildGraph } from "../utils/graph/buildGraph";
 import { filterGraph } from "../utils/graph/filterGraph";
-//import { applyDagreLayout } from "../utils/graph/applyDagreLayout";
 import { applyEmployeesAndVagasBelowDepartments } from "../utils/graph/applyEmployeesAndVagasBelowDepartments";
 import { VIEW_MODES } from "../constants/organograma";
 import { applyResponsiveTreeLayout  } from "../utils/graph/applyResponsiveTreeLayout";

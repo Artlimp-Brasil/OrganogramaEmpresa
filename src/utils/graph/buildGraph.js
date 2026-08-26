@@ -131,8 +131,8 @@ export function buildGraph(rawElements = []) {
         return statusA - statusB;
       }
 
-      const nameA = parseLabel(dataA?.label || "").linha2 || "";
-      const nameB = parseLabel(dataB?.label || "").linha2 || "";
+      const nameA = parseLabel(dataA?.label || "").linha1 || "";
+      const nameB = parseLabel(dataB?.label || "").linha1 || "";
 
       return nameA.localeCompare(nameB, "pt-BR", {
         sensitivity: "base",
@@ -142,8 +142,8 @@ export function buildGraph(rawElements = []) {
 
   vagasByDepartment.forEach((vagaList) => {
     vagaList.sort((a, b) => {
-      const nameA = parseLabel(nodesMap.get(a)?.data?.label || "").linha2 || "";
-      const nameB = parseLabel(nodesMap.get(b)?.data?.label || "").linha2 || "";
+      const nameA = parseLabel(nodesMap.get(a)?.data?.label || "").linha1 || "";
+      const nameB = parseLabel(nodesMap.get(b)?.data?.label || "").linha1 || "";
 
       return nameA.localeCompare(nameB, "pt-BR", {
         sensitivity: "base",

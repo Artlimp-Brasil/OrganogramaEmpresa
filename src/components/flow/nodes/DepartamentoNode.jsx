@@ -1,14 +1,14 @@
 import { Handle, Position } from "reactflow";
 import { DEPARTAMENTO_WIDTH } from "../../../utils/style/nodeDimensions";
+import { getBgColor, getBorderColor } from "../../../utils/style/badgeColors";
 
 export default function DepartamentoNode({ data }) {
   const numFuncIdeal = Number(data.numFuncIdeal || 0);
   const numFuncAtual = Number(data.numFuncAtual || 0);
 
-  const abaixoDoIdeal = numFuncIdeal > 0 && numFuncAtual < numFuncIdeal;
+  const bgColor     = getBgColor( numFuncIdeal,numFuncAtual )
+  const borderColor = getBorderColor( numFuncIdeal,numFuncAtual )
 
-  const bg = abaixoDoIdeal ? "#dc2626" : "#0d6efd";
-  const border = abaixoDoIdeal ? "#991b1b" : "#084298";
 
   return (
     <div
@@ -16,16 +16,13 @@ export default function DepartamentoNode({ data }) {
         width: DEPARTAMENTO_WIDTH,
         minWidth: DEPARTAMENTO_WIDTH,
         maxWidth: DEPARTAMENTO_WIDTH,
-        //boxSizing: "border-box",
         padding: "14px 18px",
         borderRadius: 16,
-        border: `1px solid ${border}`,
-        background: bg,
+        border: `2px solid ${borderColor}`,
+        background:  bgColor,
         color: "#ffffff",
         textAlign: "center",
-        boxShadow: abaixoDoIdeal
-          ? "0 4px 12px rgba(220, 38, 38, 0.28)"
-          : "0 4px 12px rgba(13, 110, 253, 0.25)",
+        boxShadow: `0 4px 12px ${bgColor}40`,
         fontFamily: "Arial, sans-serif",
         whiteSpace: "normal",
         wordBreak: "break-word",
