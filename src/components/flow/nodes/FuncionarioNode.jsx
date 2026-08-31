@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Handle, Position } from "reactflow";
 import { CARD_WIDTH } from "../../../utils/style/nodeDimensions";
 import {
@@ -6,20 +7,30 @@ import {
 } from "../../../utils/style/badgeColors";
 
 export default function FuncionarioNode({ data }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const nome = data.linha2 || data.nome || "Colaborador";
   const cargo = data.cargo || data.linha1 || "Colaborador";
   const status = data.status || "Ativo";
   const perfilDisc = data.perfilDisc || "";
   const grupoMBTI = data.grupoMBTI || "";
-
+  const pageUrl = data.pageUrl || "";
   const discColors = getDiscColor(perfilDisc);
   const mbtiColors = getMbtiColor(grupoMBTI);
   const colorBackground = status !== 'Ativo' ? "#ffb7b7" : "#ffffff" //a56d48
   const colorBorder = status !== 'Ativo' ? "2px solid #ef4444" : "2px solid #dbe3ea" //a56d48
 
+  const handleCardClick = () => {
+    if (pageUrl) {
+      window.open(pageUrl, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleCardClick}
       style={{
         width: CARD_WIDTH,
         minWidth: CARD_WIDTH,
@@ -29,12 +40,22 @@ export default function FuncionarioNode({ data }) {
         borderRadius: 16,
         border: colorBorder,
         background: colorBackground,
-        boxShadow: "0 4px 14px rgba(30, 75, 180, 0.06)",
+        boxShadow: isHovered
+          ? "0 8px 24px rgba(30, 75, 180, 0.14)"
+          : "0 4px 14px rgba(30, 75, 180, 0.06)",
         fontFamily: "Arial, sans-serif",
         color: "#0f172a",
+        transform: isHovered ? "scale(1.06)" : "scale(1)",
+        transition: "transform 0.18s ease, box-shadow 0.18s ease",
+        transformOrigin: "center center",
+        cursor: "pointer",
+        zIndex: isHovered ? 10 : 1,
+        position: "relative",
       }}
     >
-      <Handle type="target" position={Position.Top} style={{ opacity: 0 }} />
+      <div onClick={(e) => e.stopPropagation()}>
+        <Handle type="target" position={Position.Top} style={{ opacity: 0 }} />
+      </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <div
@@ -64,7 +85,9 @@ export default function FuncionarioNode({ data }) {
               marginBottom: 2,
             }}
           >
-            {nome}
+            <span style={{ textDecoration: "none", color: "inherit" }}>
+              {nome}
+            </span>
           </div>
           <div style={{ fontSize: 12, color: "#475569" }}>{cargo}</div>
         </div>
