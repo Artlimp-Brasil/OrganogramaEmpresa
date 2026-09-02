@@ -14,6 +14,7 @@ export default function FuncionarioNode({ data }) {
   const status = data.status || "Ativo";
   const perfilDisc = data.perfilDisc || "";
   const grupoMBTI = data.grupoMBTI || "";
+  const personalidadeMBTI = data.personalidadeMBTI || ""
   const pageUrl = data.pageUrl || "";
   const discColors = getDiscColor(perfilDisc);
   const mbtiColors = getMbtiColor(grupoMBTI);
@@ -161,6 +162,25 @@ export default function FuncionarioNode({ data }) {
             }}
           >
             {grupoMBTI}
+          </div>
+        )}
+
+         {personalidadeMBTI && (
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "5px 10px",
+              borderRadius: 999,
+              fontSize: 11,
+              fontWeight: 600,
+              border: `1px solid ${mbtiColors.border}`,
+              background: mbtiColors.bg,
+              color: mbtiColors.text,
+            }}
+          >
+            {personalidadeMBTI}
           </div>
         )}
       </div>
